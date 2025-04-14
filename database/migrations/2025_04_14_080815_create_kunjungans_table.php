@@ -21,11 +21,13 @@ return new class extends Migration
             $table->string('kota');
             $table->string('provinsi');
             $table->string('no_hp')->nullable();
+            $table->unsignedBigInteger('jenis_kunjungan_id');
             $table->unsignedBigInteger('dokter_id');
             $table->enum('status', array_column(StatusKunjungan::cases(), 'value'))->default(StatusKunjungan::PENDING, 'value');
             $table->enum('payment_status', array_column(PaymentStatus::cases(), 'value'))->default(PaymentStatus::UNPAID, 'value');
             $table->float('total')->default(0);
             $table->foreign('dokter_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('jenis_kunjungan_id')->references('id')->on('jenis_kunjungans')->onDelete('cascade');
             $table->timestamps();
         });
     }

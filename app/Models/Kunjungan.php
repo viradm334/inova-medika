@@ -19,4 +19,8 @@ class Kunjungan extends Model
     public function tindakans(){
         return $this->belongsToMany(Tindakan::class, 'kunjungan_tindakans');
     }
+
+    public function jeniskunjungans(){
+        return $this->belongsTo(JenisKunjungan::class, 'jenis_kunjungan_id');
+    }
 }

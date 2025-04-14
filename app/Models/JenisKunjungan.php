@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tindakan extends Model
+class JenisKunjungan extends Model
 {
     protected $guarded = ['id'];
 
     public function kunjungans(){
-        return $this->belongsToMany(Kunjungan::class, 'kunjungan_obats');
+        return $this->hasMany(Kunjungan::class);
     }
 }
