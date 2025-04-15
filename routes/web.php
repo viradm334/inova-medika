@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ObatController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -8,3 +9,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [AdminController::class, 'index']);
+Route::resource('/obat', ObatController::class);

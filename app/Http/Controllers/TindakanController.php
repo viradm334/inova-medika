@@ -12,7 +12,7 @@ class TindakanController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.tindakan.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class TindakanController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.tindakan.create');
     }
 
     /**
@@ -44,7 +44,7 @@ class TindakanController extends Controller
      */
     public function edit(Tindakan $tindakan)
     {
-        //
+        return view('admin.tindakan.edit');
     }
 
     /**

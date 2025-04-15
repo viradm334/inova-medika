@@ -12,7 +12,12 @@ class ObatController extends Controller
      */
     public function index()
     {
-        //
+        $obats = Obat::all();
+
+        return view('admin.obat.index', [
+            'title' => 'Daftar Obat',
+            'obats' => $obats
+        ]);
     }
 
     /**
@@ -20,7 +25,9 @@ class ObatController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.obat.create', [
+            'title' => 'Tambah Obat'
+        ]);
     }
 
     /**
@@ -28,7 +35,15 @@ class ObatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|unique:obats',
+            'harga' => 'required|numeric|min:0',
+            'stok' => 'required|numeric|min:0'
+        ]);
+
+        Obat::create($validatedData);
+
+        return redirect('/obat')->with('success', 'Obat telah ditambahkan!');
     }
 
     /**
@@ -44,7 +59,10 @@ class ObatController extends Controller
      */
     public function edit(Obat $obat)
     {
-        //
+        return view('admin.obat.edit', [
+            'title' => 'Ubah Data Obat',
+            'obat' => $obat
+        ]);
     }
 
     /**
@@ -52,7 +70,20 @@ class ObatController extends Controller
      */
     public function update(Request $request, Obat $obat)
     {
-        //
+        $rules = [
+            'harga' => 'required|numeric|min:0',
+            'stok' => 'required|numeric|min:0'
+        ];
+
+        if($request->name != $obat->name){
+            $rules['name'] = 'required|unique:obats';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        Obat::where('id', $obat->id)->update($validatedData);
+
+        return redirect('/obat')->with('success', 'Data obat berhasil diubah!');
     }
 
     /**
@@ -60,6 +91,8 @@ class ObatController extends Controller
      */
     public function destroy(Obat $obat)
     {
-        //
+        Obat::destroy($obat->id);
+
+        return redirect('/obat')->with('success', 'Obat berhasil dihapus!');
     }
 }
