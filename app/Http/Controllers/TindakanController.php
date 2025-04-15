@@ -12,7 +12,12 @@ class TindakanController extends Controller
      */
     public function index()
     {
-        return view('admin.tindakan.index');
+        $tindakans = Tindakan::all();
+
+        return view('admin.tindakan.index', [
+            'title' => 'Data Tindakan',
+            'tindakans' => $tindakans
+        ]);
     }
 
     /**
@@ -20,7 +25,9 @@ class TindakanController extends Controller
      */
     public function create()
     {
-        return view('admin.tindakan.create');
+        return view('admin.tindakan.create', [
+            'title' => 'Tambah Tindakan'
+        ]);
     }
 
     /**
@@ -28,7 +35,14 @@ class TindakanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nama' => 'required|unique:tindakans',
+            'harga' => 'required|numeric|min:0'
+        ]);
+
+        Tindakan::create($validatedData);
+
+        return redirect('/tindakan')->with('success', 'Tindakan telah ditambahkan!');
     }
 
     /**
@@ -44,7 +58,10 @@ class TindakanController extends Controller
      */
     public function edit(Tindakan $tindakan)
     {
-        return view('admin.tindakan.edit');
+        return view('admin.tindakan.edit', [
+            'title' => 'Ubah Data Tindakan',
+            'tindakan' => $tindakan
+        ]);
     }
 
     /**
@@ -52,7 +69,19 @@ class TindakanController extends Controller
      */
     public function update(Request $request, Tindakan $tindakan)
     {
-        //
+        $rules = [
+            'harga' => 'required|numeric|min:0'
+        ];
+
+        if($request->nama != $tindakan->nama){
+            $rules['nama'] = 'required|unique:tindakans';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        Tindakan::where('id', $tindakan->id)->update($validatedData);
+
+        return redirect('/tindakan')->with('success', 'Data tindakan berhasil diubah!');
     }
 
     /**
@@ -60,6 +89,8 @@ class TindakanController extends Controller
      */
     public function destroy(Tindakan $tindakan)
     {
-        //
+        Tindakan::destroy($tindakan->id);
+
+        return redirect('/tindakan')->with('success', 'Tindakan berhasil dihapus!');
     }
 }

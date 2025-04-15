@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Inova Medika Admin</div>
     </a>
 
     <!-- Divider -->
@@ -44,7 +44,7 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="/user">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Pegawai</span></a>
     </li>
@@ -58,7 +58,7 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="/tindakan">
             <i class="fas fa-fw fa-table"></i>
             <span>Tindakan</span></a>
     </li>

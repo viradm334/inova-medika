@@ -12,7 +12,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+
+        return view('admin.pegawai.index', [
+            'title' => 'Pegawai',
+            'users' => $users
+        ]);
     }
 
     /**
@@ -20,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pegawai.create');
     }
 
     /**
@@ -44,7 +49,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.pegawai.edit', [
+            'title' => 'Ubah Data Pegawai',
+            'user' => $user
+        ]);
     }
 
     /**
