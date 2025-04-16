@@ -20,7 +20,12 @@ Route::resource('/user', UserController::class);
 Route::resource('/tindakan', TindakanController::class);
 Route::get('/dokter', [DokterController::class, 'index']);
 Route::get('/kasir', [KasirController::class, 'index']);
+
+// Petugas Pendaftaran
 Route::get('/pendaftaran', [PendaftaranController::class, 'index']);
+Route::get('/pendaftaran-pasien', [PendaftaranController::class, 'create']);
+Route::post('/pendaftaran-pasien', [PendaftaranController::class, 'store']);
+Route::get('/detail-pendaftaran/{id}', [PendaftaranController::class, 'show']);
 
 // Auth
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest');

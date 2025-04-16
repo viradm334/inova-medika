@@ -23,4 +23,12 @@ class Kunjungan extends Model
     public function jeniskunjungans(){
         return $this->belongsTo(JenisKunjungan::class, 'jenis_kunjungan_id');
     }
+
+    public function kota(){
+        return $this->belongsTo(Regency::class, 'kota_id');
+    }
+
+    public function provinsi(){
+        return $this->belongsTo(Province::class, 'provinsi_id');
+    }
 }

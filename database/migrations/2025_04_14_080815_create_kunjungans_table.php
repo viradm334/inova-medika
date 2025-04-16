@@ -18,9 +18,10 @@ return new class extends Migration
             $table->string('nama_pasien');
             $table->date('tgl_lahir');
             $table->longText('alamat')->nullable();
-            $table->string('kota');
-            $table->string('provinsi');
+            $table->foreignId('kota_id');
+            $table->foreignId('provinsi_id');
             $table->string('no_hp')->nullable();
+            $table->longText('keluhan');
             $table->unsignedBigInteger('jenis_kunjungan_id');
             $table->unsignedBigInteger('dokter_id');
             $table->enum('status', array_column(StatusKunjungan::cases(), 'value'))->default(StatusKunjungan::PENDING, 'value');

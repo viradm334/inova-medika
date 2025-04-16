@@ -16,7 +16,10 @@ class AccessMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        
+        // if(auth()->user()->role != 'Admin'){
+        //     return redirect('/login');
+        // }
+
         return $next($request);
     }
 }

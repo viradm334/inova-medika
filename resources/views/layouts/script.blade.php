@@ -15,6 +15,9 @@
 <script src="{{ asset('sbadmin/js/demo/chart-area-demo.js') }}"></script>
 <script src="{{ asset('sbadmin/js/demo/chart-pie-demo.js') }}"></script>
 
+<!-- Latest compiled and minified JavaScript for Live Search -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
 {{-- <!-- Page level plugins -->
 <script src="{{ asset('sbadmin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('sbadmin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
