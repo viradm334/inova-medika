@@ -49,7 +49,7 @@ class KasirController extends Controller
 
         $kunjungan = Kunjungan::findOrFail($request->id);
 
-        $kembalian = $kunjungan->total - $request->jumlah_bayar;
+        $kembalian = $request->jumlah_bayar - $kunjungan->total;
 
         $kunjungan->update([
             'waktu_bayar' => now(),
