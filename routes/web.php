@@ -5,6 +5,7 @@ use App\Http\Controllers\ObatController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DokterController;
+use App\Http\Controllers\JenisKunjunganController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PendaftaranController;
@@ -19,6 +20,7 @@ Route::get('/', [AdminController::class, 'index']);
 Route::resource('/obat', ObatController::class);
 Route::resource('/user', UserController::class);
 Route::resource('/tindakan', TindakanController::class);
+Route::resource('/jeniskunjungan', JenisKunjunganController::class);
 
 // Petugas Pendaftaran
 Route::get('/pendaftaran', [PendaftaranController::class, 'index']);

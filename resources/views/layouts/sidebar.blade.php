@@ -65,6 +65,13 @@
         </li>
 
         <!-- Nav Item - Tables -->
+        <li class="nav-item {{ Request::is('jeniskunjungan*') ? 'active' : '' }}">
+            <a class="nav-link" href="/jeniskunjungan">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Jenis Kunjungan</span></a>
+        </li>
+
+        <!-- Nav Item - Tables -->
         <li class="nav-item">
             <a class="nav-link" href="tables.html">
                 <i class="fas fa-fw fa-table"></i>
