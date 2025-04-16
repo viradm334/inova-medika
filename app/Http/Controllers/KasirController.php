@@ -6,5 +6,9 @@ use Illuminate\Http\Request;
 
 class KasirController extends Controller
 {
-    //
+    public function index(){
+        return view('kasir.index', [
+            'title' => 'Kasir'
+        ]);
+    }
 }
