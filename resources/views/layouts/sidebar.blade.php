@@ -12,7 +12,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
         <a class="nav-link" href="/">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
@@ -43,21 +43,21 @@
     </li> --}}
 
     <!-- Nav Item - Charts -->
-    <li class="nav-item">
+    <li class="nav-item {{ Request::is('user*') ? 'active' : '' }}">
         <a class="nav-link" href="/user">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Pegawai</span></a>
     </li>
 
     <!-- Nav Item - Charts -->
-    <li class="nav-item">
+    <li class="nav-item {{ Request::is('obat*') ? 'active' : '' }}">
         <a class="nav-link" href="/obat">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Obat</span></a>
     </li>
 
     <!-- Nav Item - Tables -->
-    <li class="nav-item">
+    <li class="nav-item {{ Request::is('tindakan*') ? 'active' : '' }}">
         <a class="nav-link" href="/tindakan">
             <i class="fas fa-fw fa-table"></i>
             <span>Tindakan</span></a>

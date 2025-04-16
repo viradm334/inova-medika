@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Enums\UserRole;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -25,7 +27,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.pegawai.create');
+        $roles = array_column(UserRole::cases(), 'value');
+        return view('admin.pegawai.create', [
+            'title' => 'Tambah Data Pegawai',
+            'roles' => $roles
+        ]);
     }
 
     /**
@@ -33,7 +39,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email:dns, rfc|unique:users',
+            'password' => 'required|min:8|max:255',
+            'role' => 'required'
+        ]);
+
+        $validatedData['password'] = Hash::make($validatedData['password']);
+
+        User::create($validatedData);
+
+        return redirect('/user')->with('success', 'Data pegawai berhasil ditambahkan!');
     }
 
     /**
