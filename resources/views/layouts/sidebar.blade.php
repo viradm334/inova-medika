@@ -113,8 +113,8 @@
 
     @can('kasir')
         <!-- Nav Item - Tables -->
-        <li class="nav-item {{ Request::is('tindakan*') ? 'active' : '' }}">
-            <a class="nav-link" href="/tindakan">
+        <li class="nav-item {{ Request::is('kasir') ? 'active' : '' }}">
+            <a class="nav-link" href="/kasir">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Menu Kasir</span></a>
         </li>

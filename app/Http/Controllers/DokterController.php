@@ -23,7 +23,7 @@ class DokterController extends Controller
 
     public function checkin(Request $request){
         $kunjungan = Kunjungan::findOrFail($request->id);
-        $kunjungan->update(['status' => 'ongoing']);
+        $kunjungan->update(['status' => 'ongoing', 'waktu_checkin' => now()]);
 
         return redirect('/resep')->with('success', 'Pasien berhasil check in!');
     }
@@ -52,7 +52,7 @@ class DokterController extends Controller
         }
         
         $kunjungan->obats()->attach($dataObat);
-        $kunjungan->update(['status' => 'finished', 'diagnosis' => $request->diagnosis]);
+        $kunjungan->update(['status' => 'finished', 'diagnosis' => $request->diagnosis, 'waktu_checkout' => now()]);
 
         return redirect()->back()->with('success', 'Resep berhasil dibuat!');
     }

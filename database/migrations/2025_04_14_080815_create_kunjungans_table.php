@@ -27,7 +27,12 @@ return new class extends Migration
             $table->unsignedBigInteger('dokter_id');
             $table->enum('status', array_column(StatusKunjungan::cases(), 'value'))->default(StatusKunjungan::PENDING, 'value');
             $table->enum('payment_status', array_column(PaymentStatus::cases(), 'value'))->default(PaymentStatus::UNPAID, 'value');
+            $table->dateTime('waktu_checkin')->nullable();
+            $table->dateTime('waktu_checkout')->nullable();
             $table->float('total')->default(0);
+            $table->float('jumlah_bayar')->nullable();
+            $table->float('kembalian')->nullable();
+            $table->dateTime('waktu_bayar')->nullable();
             $table->foreign('dokter_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('jenis_kunjungan_id')->references('id')->on('jenis_kunjungans')->onDelete('cascade');
             $table->timestamps();

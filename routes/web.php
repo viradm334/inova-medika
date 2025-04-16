@@ -14,11 +14,11 @@ use App\Http\Controllers\TindakanController;
 //     return view('welcome');
 // });
 
+// Admin
 Route::get('/', [AdminController::class, 'index']);
 Route::resource('/obat', ObatController::class);
 Route::resource('/user', UserController::class);
 Route::resource('/tindakan', TindakanController::class);
-Route::get('/kasir', [KasirController::class, 'index']);
 
 // Petugas Pendaftaran
 Route::get('/pendaftaran', [PendaftaranController::class, 'index']);
@@ -32,6 +32,11 @@ Route::get('/resep', [DokterController::class, 'resepobattindakan']);
 Route::post('/resep', [DokterController::class, 'store']);
 Route::get('/checkin', [DokterController::class, 'checkinpage']);
 Route::post('/checkin', [DokterController::class, 'checkin']);
+
+// Kasir
+Route::get('/kasir', [KasirController::class, 'index']);
+Route::get('/payment/{id}', [KasirController::class, 'paymentpage']);
+Route::post('/pay', [KasirController::class, 'pay']);
 
 // Auth
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
