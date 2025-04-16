@@ -13,7 +13,7 @@ class Kunjungan extends Model
     }
 
     public function obats(){
-        return $this->belongsToMany(Obat::class, 'kunjungan_obats');
+        return $this->belongsToMany(Obat::class, 'kunjungan_obats')->withPivot('jumlah');
     }
 
     public function tindakans(){

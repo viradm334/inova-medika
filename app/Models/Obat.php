@@ -9,6 +9,6 @@ class Obat extends Model
     protected $guarded = ['id'];
 
     public function kunjungans(){
-        return $this->belongsToMany(Kunjungan::class, 'kunjungan_obats');
+        return $this->belongsToMany(Kunjungan::class, 'kunjungan_obats')->withPivot('jumlah');
     }
 }

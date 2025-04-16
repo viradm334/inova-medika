@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId('provinsi_id');
             $table->string('no_hp')->nullable();
             $table->longText('keluhan');
+            $table->longText('diagnosis')->nullable();
             $table->unsignedBigInteger('jenis_kunjungan_id');
             $table->unsignedBigInteger('dokter_id');
             $table->enum('status', array_column(StatusKunjungan::cases(), 'value'))->default(StatusKunjungan::PENDING, 'value');

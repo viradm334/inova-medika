@@ -90,10 +90,24 @@
 
     @can('dokter')
         <!-- Nav Item - Tables -->
-        <li class="nav-item {{ Request::is('tindakan*') ? 'active' : '' }}">
-            <a class="nav-link" href="/tindakan">
+        <li class="nav-item {{ Request::is('dokter') ? 'active' : '' }}">
+            <a class="nav-link" href="/dokter">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Menu Dokter</span></a>
+        </li>
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item {{ Request::is('checkin') ? 'active' : '' }}">
+            <a class="nav-link" href="/checkin">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Check-in Pasien</span></a>
+        </li>
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item {{ Request::is('resep') ? 'active' : '' }}">
+            <a class="nav-link" href="/resep">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Tambah Resep</span></a>
         </li>
     @endcan
 
