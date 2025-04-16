@@ -12,7 +12,7 @@ class TindakanController extends Controller
      */
     public function index()
     {
-        $tindakans = Tindakan::all();
+        $tindakans = Tindakan::paginate(10);
 
         return view('admin.tindakan.index', [
             'title' => 'Data Tindakan',

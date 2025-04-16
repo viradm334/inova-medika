@@ -46,6 +46,9 @@
                 </tbody>
             </table>
         </div>
+        <div class="d-flex justify-content-end">
+            {{ $tindakans->links() }}
+        </div>
     </div>
 </div>
 @endsection

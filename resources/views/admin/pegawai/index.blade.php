@@ -48,6 +48,9 @@
                 </tbody>
             </table>
         </div>
+        <div class="d-flex justify-content-end">
+            {{ $users->links() }}
+        </div>
     </div>
 </div>
 @endsection
