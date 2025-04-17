@@ -14,12 +14,11 @@ class AccessMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next, ...$roles): Response
     {
-        // if(auth()->user()->role != 'Admin'){
-        //     return redirect('/login');
-        // }
-
+        if(!in_array(Auth::user()->role, $roles)){
+            abort(403);
+        }
         return $next($request);
     }
 }

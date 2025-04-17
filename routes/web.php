@@ -16,28 +16,36 @@ use App\Http\Controllers\TindakanController;
 // });
 
 // Admin
-Route::get('/', [AdminController::class, 'index']);
-Route::resource('/obat', ObatController::class);
-Route::resource('/user', UserController::class);
-Route::resource('/tindakan', TindakanController::class);
-Route::resource('/jeniskunjungan', JenisKunjunganController::class);
+Route::middleware(['auth', 'role:Admin'])->group(function () {
+    Route::get('/', [AdminController::class, 'index']);
+    Route::resource('/obat', ObatController::class);
+    Route::resource('/user', UserController::class);
+    Route::resource('/tindakan', TindakanController::class);
+    Route::resource('/jeniskunjungan', JenisKunjunganController::class);
+});
 
 // Petugas Pendaftaran
-Route::get('/pendaftaran', [PendaftaranController::class, 'index']);
-Route::get('/pendaftaran-pasien', [PendaftaranController::class, 'create']);
-Route::post('/pendaftaran-pasien', [PendaftaranController::class, 'store']);
-Route::get('/detail-pendaftaran/{id}', [PendaftaranController::class, 'show']);
+Route::middleware(['auth', 'role:Petugas Pendaftaran'])->group(function () {
+    Route::get('/pendaftaran', [PendaftaranController::class, 'index']);
+    Route::get('/pendaftaran-pasien', [PendaftaranController::class, 'create']);
+    Route::post('/pendaftaran-pasien', [PendaftaranController::class, 'store']);
+    Route::get('/detail-pendaftaran/{id}', [PendaftaranController::class, 'show']);
+});
 
 // Dokter
-Route::get('/dokter', [DokterController::class, 'index']);
-Route::get('/resep', [DokterController::class, 'resepobattindakan']);
-Route::post('/resep', [DokterController::class, 'store']);
-Route::post('/checkin', [DokterController::class, 'checkin']);
+Route::middleware(['auth', 'role:Dokter'])->group(function () {
+    Route::get('/dokter', [DokterController::class, 'index']);
+    Route::get('/resep', [DokterController::class, 'resepobattindakan']);
+    Route::post('/resep', [DokterController::class, 'store']);
+    Route::post('/checkin', [DokterController::class, 'checkin']);
+});
 
 // Kasir
-Route::get('/kasir', [KasirController::class, 'index']);
-Route::get('/payment/{id}', [KasirController::class, 'paymentpage']);
-Route::post('/pay', [KasirController::class, 'pay']);
+Route::middleware(['auth', 'role:Kasir'])->group(function () {
+    Route::get('/kasir', [KasirController::class, 'index']);
+    Route::get('/payment/{id}', [KasirController::class, 'paymentpage']);
+    Route::post('/pay', [KasirController::class, 'pay']);
+});
 
 // Auth
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
