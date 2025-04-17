@@ -29,7 +29,7 @@
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>ID Kunjungan</th>
+                        <th>Nama Pasien</th>
                         <th>Tanggal Masuk</th>
                         <th>Status Kunjungan</th>
                         <th>Status Pembayaran</th>
@@ -40,15 +40,15 @@
                     @foreach ($kunjungans as $kunjungan)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $kunjungan->id }}</td>
-                        <td>{{ $kunjungan->created_at }}</td>
+                        <td>{{ $kunjungan->nama_pasien }}</td>
+                        <td>{{ $kunjungan->created_at->format('Y-m-d') }}</td>
                         <td>{{ $kunjungan->status }}</td>
                         <td>{{ $kunjungan->payment_status }}</td>
                         <td>
                             @if ($kunjungan->payment_status === 'unpaid')
                                 <a href="/payment/{{ $kunjungan->id }}" class="btn btn-primary">Bayar</a>
                             @else
-                                <a href="/payment-details/{{ $kunjungan->id }}" class="btn btn-info">Lihat Detail</a>
+                                <a href="/payment/{{ $kunjungan->id }}" class="btn btn-info">Lihat Detail</a>
                             @endif
                         </td>
                     </tr>

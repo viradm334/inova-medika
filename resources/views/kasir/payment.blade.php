@@ -4,75 +4,118 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary mb-3">Bayar Kunjungan</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Detail Kunjungan</h6>
     </div>
     <div class="card-body">
-        <h1 class="m-2">Detail Kunjungan</h1>
+        <h4 class="mb-3 text-center">Detail Pembayaran</h4>
         <p>Nama Pasien: {{ $kunjungan->nama_pasien }}</p>
-        <p>Umur: {{ $kunjungan->nama_pasien }}</p>
         <p>Alamat: {{ $kunjungan->alamat }}</p>
-        <p>Kota: {{ $kunjungan->kota->name }}</p>
-        <p>Provinsi: {{ $kunjungan->provinsi->name }}</p>
         <p>Nama Dokter: {{ $kunjungan->user->name }}</p>
         <p>Jenis Kunjungan: {{ $kunjungan->jeniskunjungans->nama }}</p>
         <p>Status Kunjungan: {{ $kunjungan->status }}</p>
         <p>Status Pembayaran: {{ $kunjungan->payment_status }}</p>
+        @if ($kunjungan->payment_status === 'paid')
+            <p>Waktu Pembayaran: {{ $kunjungan->waktu_bayar }}</p>
+        @endif
         <h4>Komponen Biaya</h4>
-        <hr>
-        <h4>Biaya Administrasi: {{ $biaya_admin }}</h4>
-        <h4>Biaya Konsultasi: {{ $biaya_kunjungan }}</h4>
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Nama Biaya</th>
+                        <th>Jumlah</th>
+                        <th>Harga Satuan</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td>Biaya Administrasi</td>
+                        <td>1x</td>
+                        <td>Rp{{ number_format($biaya_admin, 0, ',', '.') }}</td>
+                        <td>Rp{{ number_format($biaya_admin, 0, ',', '.') }}</td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td>{{ $kunjungan->jeniskunjungans->nama }}</td>
+                        <td>1x</td>
+                        <td>Rp{{ number_format($biaya_kunjungan, 0, ',', '.') }}</td>
+                        <td>Rp{{ number_format($biaya_kunjungan, 0, ',', '.') }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <h4>Tindakan</h4>
-        <div class="col">
-            @foreach ($kunjungan->tindakans as $tindakan)
-            <div class="row">
-                <div class="col">{{ $loop->iteration }}</div>
-                <div class="col">{{ $tindakan->nama }}</div>
-                <div class="col">{{ $tindakan->harga }}</div>
-            </div>
-            @endforeach
-        </div>
-        <hr>
-        <h4>Obat</h4>
-        <div class="col">
-            @foreach ($kunjungan->obats as $obat)
-            <div class="row">
-                <div class="col">{{ $loop->iteration }}</div>
-                <div class="col">{{ $obat->name }}</div>
-                <div class="col">{{ $obat->pivot->jumlah }}x</div>
-                <div class="col">{{ $obat->harga }}</div>
-                <div class="col">{{ $obat->harga * $obat->pivot->jumlah }}</div>
-            </div>
-            @endforeach
-        </div>
-        <hr>
-        <div class="col">
-            <div class="row">
-                <div class="col">Total</div>
-                <div class="col">{{ $total }}</div>
-            </div>
-        </div>
-        <hr>
-        {{-- <div class="table-responsive">
+        <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>No.</th>
                         <th>Nama Tindakan</th>
-                        <th>Tanggal Masuk</th>
+                        <th>Jumlah</th>
+                        <th>Harga Satuan</th>
+                        <th>Subtotal</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($kunjungans as $kunjungan)
+                    @foreach ($kunjungan->tindakans as $tindakan)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $kunjungan->id }}</td>
-                        <td>{{ $kunjungan->created_at }}</td>
+                        <td>{{ $tindakan->nama }}</td>
+                        <td>1x</td>
+                        <td>Rp{{ number_format($tindakan->harga, 0, ',', '.') }}</td>
+                        <td>Rp{{ number_format($tindakan->harga, 0, ',', '.') }}</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-        </div> --}}
-        <h1>Pembayaran</h1>
+        </div>
+        <h4>Obat</h4>
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Nama Obat</th>
+                        <th>Jumlah</th>
+                        <th>Harga Satuan</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($kunjungan->obats as $obat)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $obat->name }}</td>
+                        <td>{{ $obat->pivot->jumlah }}x</td>
+                        <td>Rp{{ number_format($obat->harga, 0, ',', '.') }}</td>
+                        <td>Rp{{ number_format($obat->harga * $obat->pivot->jumlah, 0, ',', '.') }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <div class="row d-flex justify-content-between ml-1 mr-5">
+                <div><h5>Total</h5></div>
+                <div>Rp{{ number_format($total, 0, ',', '.') }}</div>
+            </div>
+            @if ($kunjungan->payment_status === 'paid')
+            <div class="row d-flex justify-content-between ml-1 mr-5">
+                <div><h5>Jumlah yang Dibayarkan</h5></div>
+                <div>Rp{{ number_format($kunjungan->jumlah_bayar, 0, ',', '.') }}</div>
+            </div>
+            <div class="row d-flex justify-content-between ml-1 mr-5">
+                <div><h5>Kembalian</h5></div>
+                <div>Rp{{ number_format($kunjungan->kembalian, 0, ',', '.') }}</div>
+            </div>
+            @endif
+        </div>
+        @if ($kunjungan->payment_status === 'unpaid')
+        <hr>
+        <h5>Pembayaran</h5>
         <form method="POST" action="/pay">
             @csrf
             <div class="col">
@@ -93,6 +136,11 @@
                 </div>
             </div>
         </form>
+        @else
+        <div class="text-center mt-3">
+            <a href="/kasir" class="btn btn-primary">Kembali</a>
+        </div>
+        @endif
     </div>
 </div>
 @endsection
