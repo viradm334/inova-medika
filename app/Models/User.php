@@ -46,4 +46,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function kunjungans(){
+        return $this->hasMany(Kunjungan::class, 'dokter_id');
+    }
 }

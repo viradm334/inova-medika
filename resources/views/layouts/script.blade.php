@@ -14,6 +14,7 @@
 <!-- Page level custom scripts -->
 <script src="{{ asset('sbadmin/js/demo/chart-area-demo.js') }}"></script>
 <script src="{{ asset('sbadmin/js/demo/chart-pie-demo.js') }}"></script>
+<script src="{{ asset('sbadmin/js/demo/chart-pie-demo-copy.js') }}"></script>
 
 <!-- Latest compiled and minified JavaScript for Live Search -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>

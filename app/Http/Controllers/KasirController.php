@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kunjungan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KasirController extends Controller
 {
@@ -51,6 +52,14 @@ class KasirController extends Controller
 
         $kembalian = $request->jumlah_bayar - $kunjungan->total;
 
+        if($kembalian < 0){
+            return redirect('/kasir')->with('error', 'Pembayaran tidak mencukupi!');
+        }
+
+        DB::beginTransaction();
+
+        try {
+        // Update payment info
         $kunjungan->update([
             'waktu_bayar' => now(),
             'jumlah_bayar' => $request->jumlah_bayar,
@@ -58,6 +67,17 @@ class KasirController extends Controller
             'payment_status' => 'paid'
         ]);
 
-        return redirect('/kasir')->with('success', 'Berhasil bayar tagihan kunjungan!');
+        // Reduce stok for each obat
+        foreach ($kunjungan->obats as $obat) {
+            $jumlah = $obat->pivot->jumlah;
+            $obat->decrement('stok', $jumlah);
+        }
+
+            DB::commit();
+            return redirect('/kasir')->with('success', 'Berhasil bayar tagihan kunjungan!');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/kasir')->with('error', 'Terjadi kesalahan saat membayar kunjungan.');
+        }
     }
 }
