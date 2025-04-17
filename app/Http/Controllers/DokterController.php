@@ -6,18 +6,16 @@ use App\Models\Obat;
 use App\Models\Tindakan;
 use App\Models\Kunjungan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DokterController extends Controller
 {
     public function index(){
-        return view('dokter.index', [
-            'title' => 'Dokter'
-        ]);
-    }
+        $kunjungans = Kunjungan::where('dokter_id', Auth::user()->id)->paginate(10);
 
-    public function checkinpage(){
-        return view('dokter.checkin', [
-            'title' => 'Check In Pasien'
+        return view('dokter.index', [
+            'title' => 'Dokter',
+            'kunjungans' => $kunjungans
         ]);
     }
 

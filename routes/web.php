@@ -32,7 +32,6 @@ Route::get('/detail-pendaftaran/{id}', [PendaftaranController::class, 'show']);
 Route::get('/dokter', [DokterController::class, 'index']);
 Route::get('/resep', [DokterController::class, 'resepobattindakan']);
 Route::post('/resep', [DokterController::class, 'store']);
-Route::get('/checkin', [DokterController::class, 'checkinpage']);
 Route::post('/checkin', [DokterController::class, 'checkin']);
 
 // Kasir

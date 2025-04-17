@@ -104,13 +104,6 @@
         </li>
 
         <!-- Nav Item - Tables -->
-        <li class="nav-item {{ Request::is('checkin') ? 'active' : '' }}">
-            <a class="nav-link" href="/checkin">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Check-in Pasien</span></a>
-        </li>
-
-        <!-- Nav Item - Tables -->
         <li class="nav-item {{ Request::is('resep') ? 'active' : '' }}">
             <a class="nav-link" href="/resep">
                 <i class="fas fa-fw fa-table"></i>
