@@ -52,7 +52,7 @@ class PendaftaranController extends Controller
 
         Kunjungan::create($validatedData);
 
-        return redirect()->back()->with('success', 'Kunjungan berhasil dibuat!');
+        return redirect('/pendaftaran')->with('success', 'Kunjungan berhasil dibuat!');
     }
 
     public function show($id){

@@ -33,11 +33,10 @@
                                                 id="exampleInputPassword" placeholder="Password" name="password">
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-block btn-user">Login</button>
-                                        <hr>
                                     </form>
-                                    <div class="text-center">
+                                    {{-- <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
+                                    </div> --}}
                                     @if (session()->has('loginError'))
                                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                         {{ session('loginError') }}

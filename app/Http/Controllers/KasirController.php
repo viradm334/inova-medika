@@ -10,7 +10,7 @@ class KasirController extends Controller
 {
     public function index(){
         
-        $kunjungans = Kunjungan::paginate(10);
+        $kunjungans = Kunjungan::where('status', 'finished')->paginate(10);
         
         return view('kasir.index', [
             'title' => 'Kasir',
