@@ -5,6 +5,7 @@ use App\Http\Controllers\ObatController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DokterController;
+use App\Http\Controllers\GuestController;
 use App\Http\Controllers\JenisKunjunganController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\LoginController;
@@ -17,7 +18,7 @@ use App\Http\Controllers\TindakanController;
 
 // Admin
 Route::middleware(['auth', 'role:Admin'])->group(function () {
-    Route::get('/', [AdminController::class, 'index']);
+    Route::get('/dashboard', [AdminController::class, 'index']);
     Route::resource('/obat', ObatController::class);
     Route::resource('/user', UserController::class);
     Route::resource('/tindakan', TindakanController::class);
@@ -51,3 +52,6 @@ Route::middleware(['auth', 'role:Kasir'])->group(function () {
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
+
+// Home
+Route::get('/', [GuestController::class, 'index'])->middleware('guest');

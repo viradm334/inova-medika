@@ -21,7 +21,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             if($request->user()->role === 'Admin'){
-                return redirect()->intended('/');
+                return redirect()->intended('/dashboard');
             }else if($request->user()->role === 'Petugas Pendaftaran'){
                 return redirect()->intended('/pendaftaran');
             }else if($request->user()->role === 'Dokter'){
@@ -40,6 +40,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/');
     }
 }
