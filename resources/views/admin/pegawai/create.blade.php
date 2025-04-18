@@ -24,7 +24,7 @@
 
     <div class="form-group">
       <label for="exampleInputPassword1">Email</label>
-      <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="0" name="email">
+      <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email">
       @error('email')
         <div class="invalid-feedback">
             <span class="text-red-500">{{ $message }}</span>

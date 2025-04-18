@@ -64,7 +64,9 @@
         </select>
     </div>
 
-    <a href="/pendaftaran" class="btn btn-primary">Kembali</a>
+    <div class="text-center mt-3">
+      <a href="/pendaftaran" class="btn btn-primary">Kembali</a>
+    </div>
   </form>
 
   <script>

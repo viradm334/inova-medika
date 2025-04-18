@@ -16,7 +16,7 @@ class AdminController extends Controller
         $dokter_terbanyak = User::where('role', 'Dokter')->withCount('kunjungans')->orderBy('kunjungans_count', 'desc')->first();
 
         $pemasukan_today = DB::table('kunjungans')
-        ->whereDate('created_at', Carbon::today())->where('payment_status', 'paid')->sum('total');
+        ->whereDate('waktu_bayar', Carbon::today())->where('payment_status', 'paid')->sum('total');
 
         // $avgkunjunganperhari = DB::table('kunjungans')
         // ->selectRaw('FLOOR(COUNT(*) / (DATEDIFF(MAX(created_at), MIN(created_at)) + 1)) as avg_per_day')->first();

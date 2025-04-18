@@ -17,6 +17,7 @@
         @endcanany
         <p>Nama Dokter: {{ $kunjungan->user->name }}</p>
         <p>Jenis Kunjungan: {{ $kunjungan->jeniskunjungans->nama }}</p>
+        <p>Keluhan: {{ $kunjungan->keluhan }}</p>
         <p>Status Kunjungan: {{ $kunjungan->status }}</p>
         <p>Status Pembayaran: {{ $kunjungan->payment_status }}</p>
         @if ($kunjungan->payment_status === 'paid')
