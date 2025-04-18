@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class DokterController extends Controller
 {
     public function index(){
-        $kunjungans = Kunjungan::where('dokter_id', Auth::user()->id)->paginate(10);
+        $kunjungans = Kunjungan::where('dokter_id', Auth::user()->id)->where('status', 'pending')->paginate(10);
 
         return view('dokter.index', [
             'title' => 'Dokter',
@@ -53,5 +53,14 @@ class DokterController extends Controller
         $kunjungan->update(['status' => 'finished', 'diagnosis' => $request->diagnosis, 'waktu_checkout' => now()]);
 
         return redirect()->back()->with('success', 'Resep berhasil dibuat!');
+    }
+
+    public function arsipkunjungan(){
+        $kunjungans = Kunjungan::where('dokter_id', Auth::user()->id)->where('status', 'finished')->paginate(10);
+
+        return view('dokter.arsip', [
+            'title' => 'Arsip Kunjungan',
+            'kunjungans' => $kunjungans
+        ]);
     }
 }

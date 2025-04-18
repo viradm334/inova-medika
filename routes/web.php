@@ -23,6 +23,7 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::resource('/user', UserController::class);
     Route::resource('/tindakan', TindakanController::class);
     Route::resource('/jeniskunjungan', JenisKunjunganController::class);
+    Route::get('/kunjungan', [AdminController::class, 'kunjungans']);
 });
 
 // Petugas Pendaftaran
@@ -39,6 +40,7 @@ Route::middleware(['auth', 'role:Dokter'])->group(function () {
     Route::get('/resep', [DokterController::class, 'resepobattindakan']);
     Route::post('/resep', [DokterController::class, 'store']);
     Route::post('/checkin', [DokterController::class, 'checkin']);
+    Route::get('/arsip', [DokterController::class, 'arsipkunjungan']);
 });
 
 // Kasir

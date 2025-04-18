@@ -102,4 +102,13 @@ class AdminController extends Controller
             'jumlahKunjunganPerBulan' => $jumlahKunjunganPerBulan
         ]);
     }
+
+    public function kunjungans(){
+        $kunjungans = Kunjungan::paginate(10);
+
+        return view('admin.kunjungan.index', [
+            'title' => 'Daftar Kunjungan',
+            'kunjungans' => $kunjungans
+        ]);
+    }
 }

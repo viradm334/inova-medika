@@ -32,7 +32,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $tindakan->nama }}</td>
-                        <td>{{ $tindakan->harga }}</td>
+                        <td>Rp{{ number_format($tindakan->harga, 0, ',', '.') }}</td>
                         <td>
                             <a href="/tindakan/{{ $tindakan->id }}/edit" class="btn btn-primary">Edit</a>
                             <form action="/tindakan/{{ $tindakan->id }}" method="post" class="d-inline">

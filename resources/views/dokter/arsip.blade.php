@@ -21,7 +21,7 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary mb-3">Daftar Kunjungan Menunggu</h6>
+        <h6 class="m-0 font-weight-bold text-primary mb-3">Daftar Kunjungan Selesai</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -29,9 +29,9 @@
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>ID Kunjungan</th>
                         <th>Nama Pasien</th>
-                        <th>Tanggal Masuk</th>
+                        <th>Waktu Check-in</th>
+                        <th>Waktu Check-out</th>
                         <th>Status Kunjungan</th>
                         <th>Action</th>
                     </tr>
@@ -40,9 +40,9 @@
                     @foreach ($kunjungans as $kunjungan)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $kunjungan->id }}</td>
                         <td>{{ $kunjungan->nama_pasien }}</td>
-                        <td>{{ $kunjungan->created_at->format('Y-m-d') }}</td>
+                        <td>{{ $kunjungan->waktu_checkin }}</td>
+                        <td>{{ $kunjungan->waktu_checkout }}</td>
                         <td>{{ $kunjungan->status }}</td>
                         <td>
                             @if ($kunjungan->status === 'pending')

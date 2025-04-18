@@ -72,10 +72,10 @@
         </li>
 
         <!-- Nav Item - Tables -->
-        <li class="nav-item">
-            <a class="nav-link" href="tables.html">
+        <li class="nav-item {{ Request::is('kunjungan') ? 'active' : '' }}">
+            <a class="nav-link" href="/kunjungan">
                 <i class="fas fa-fw fa-table"></i>
-                <span>Kunjungan</span></a>
+                <span>Daftar Kunjungan</span></a>
         </li>
     @endcan
 
@@ -100,7 +100,7 @@
         <li class="nav-item {{ Request::is('dokter') ? 'active' : '' }}">
             <a class="nav-link" href="/dokter">
                 <i class="fas fa-fw fa-table"></i>
-                <span>Menu Dokter</span></a>
+                <span>Home</span></a>
         </li>
 
         <!-- Nav Item - Tables -->
@@ -108,6 +108,13 @@
             <a class="nav-link" href="/resep">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Tambah Resep</span></a>
+        </li>
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item {{ Request::is('arsip') ? 'active' : '' }}">
+            <a class="nav-link" href="/arsip">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Arsip Kunjungan</span></a>
         </li>
     @endcan
 

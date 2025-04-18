@@ -33,7 +33,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $obat->name }}</td>
-                        <td>{{ $obat->harga }}</td>
+                        <td>Rp{{ number_format($obat->harga, 0, ',', '.') }}</td>
                         <td>{{ $obat->stok }}</td>
                         <td>
                             <a href="/obat/{{ $obat->id }}/edit" class="btn btn-primary">Edit</a>
