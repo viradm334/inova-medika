@@ -39,7 +39,7 @@
                         <td>{{ $kunjungan->user->name }}</td>
                         <td>{{ $kunjungan->status }}</td>
                         <td>
-                            <a href="/detail-pendaftaran/{{ $kunjungan->id }}" class="btn btn-primary">Lihat Detail</a>
+                            <a href="/detail-kunjungan/{{ $kunjungan->id }}" class="btn btn-primary">Lihat Detail</a>
                         </td>
                     </tr>
                     @endforeach

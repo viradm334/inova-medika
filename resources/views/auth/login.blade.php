@@ -38,7 +38,7 @@
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
                                     </div> --}}
                                     @if (session()->has('loginError'))
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
                                         {{ session('loginError') }}
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                           <span aria-hidden="true">&times;</span>

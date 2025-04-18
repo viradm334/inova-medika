@@ -37,10 +37,11 @@
                         <td>{{ $user->email }}</td>
                         <td>
                             <a href="/user/{{ $user->id }}/edit" class="btn btn-primary">Edit</a>
+                            <a href="/user/{{ $user->id }}" class="btn btn-warning">View</a>
                             <form action="/user/{{ $user->id }}" method="post" class="d-inline">
                                 @method('delete')
                                 @csrf
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Apa anda yakin untuk menghapus data obat?')">Delete</button>
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Apa anda yakin untuk menghapus data pegawai?')">Delete</button>
                             </form>
                         </td>
                     </tr>

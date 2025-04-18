@@ -32,7 +32,7 @@ Route::middleware(['auth', 'role:Petugas Pendaftaran'])->group(function () {
     Route::get('/pendaftaran', [PendaftaranController::class, 'index']);
     Route::get('/pendaftaran-pasien', [PendaftaranController::class, 'create']);
     Route::post('/pendaftaran-pasien', [PendaftaranController::class, 'store']);
-    Route::get('/detail-pendaftaran/{id}', [PendaftaranController::class, 'show']);
+    Route::get('/detail-kunjungan/{id}', [PendaftaranController::class, 'show']);
 });
 
 // Dokter
@@ -60,4 +60,4 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/', [GuestController::class, 'index'])->middleware('guest');
 
 // Detail Kunjungan
-Route::get('/detail-pendaftaran/{id}',[DetailPendaftaranController::class, 'index'])->middleware(['auth', 'role:Admin,Dokter,Petugas Pendaftaran']);
+Route::get('/detail-pendaftaran/{id}',[DetailPendaftaranController::class, 'index'])->middleware(['auth', 'role:Admin,Dokter']);

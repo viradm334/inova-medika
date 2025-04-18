@@ -58,7 +58,12 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        $roles = array_column(UserRole::cases(), 'value');
+        return view('admin.pegawai.show', [
+            'title' => 'Detail Pegawai',
+            'user' => $user,
+            'roles' => $roles
+        ]);
     }
 
     /**
@@ -66,9 +71,12 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $roles = array_column(UserRole::cases(), 'value');
+
         return view('admin.pegawai.edit', [
             'title' => 'Ubah Data Pegawai',
-            'user' => $user
+            'user' => $user,
+            'roles' => $roles
         ]);
     }
 
@@ -77,7 +85,20 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $rules = [
+            'name' => 'required',
+            'role' => 'required'
+        ];
+
+        if($request->email != $user->email){
+            $rules['email'] = 'required|email:dns, rfc|unique:users';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        User::where('id', $user->id)->update($validatedData);
+
+        return redirect('/user')->with('success', 'Data pegawai berhasil diubah!');
     }
 
     /**
@@ -85,6 +106,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        User::destroy($user->id);
+
+        return redirect('/user')->with('success', 'Pegawai berhasil dihapus!');
     }
 }
