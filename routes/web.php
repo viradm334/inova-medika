@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DetailPendaftaranController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\JenisKunjunganController;
@@ -57,3 +58,6 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 // Home
 Route::get('/', [GuestController::class, 'index'])->middleware('guest');
+
+// Detail Kunjungan
+Route::get('/detail-pendaftaran/{id}',[DetailPendaftaranController::class, 'index'])->middleware(['auth', 'role:Admin,Dokter,Petugas Pendaftaran']);

@@ -51,8 +51,8 @@
                                     <input type="hidden" value="{{ $kunjungan->id }}" name="id">
                                     <button type="submit" class="btn btn-primary">Checkin</button>
                                 </form>
-                            @else
-                                <a href="/payment-details/{{ $kunjungan->id }}" class="btn btn-info">Lihat Detail</a>
+                            @elseif($kunjungan->status === 'ongoing')
+                                <a href="/resep" class="btn btn-info">Tambah Resep</a>
                             @endif
                         </td>
                     </tr>

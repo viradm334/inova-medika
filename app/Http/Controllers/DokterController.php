@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class DokterController extends Controller
 {
     public function index(){
-        $kunjungans = Kunjungan::where('dokter_id', Auth::user()->id)->where('status', 'pending')->paginate(10);
+        $kunjungans = Kunjungan::where('dokter_id', Auth::user()->id)->whereIn('status', ['pending', 'ongoing'])->paginate(10);
 
         return view('dokter.index', [
             'title' => 'Dokter',

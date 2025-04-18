@@ -52,7 +52,7 @@
                                     <button type="submit" class="btn btn-primary">Checkin</button>
                                 </form>
                             @else
-                                <a href="/payment-details/{{ $kunjungan->id }}" class="btn btn-info">Lihat Detail</a>
+                                <a href="/detail-pendaftaran/{{ $kunjungan->id }}" class="btn btn-info">Lihat Detail</a>
                             @endif
                         </td>
                     </tr>
